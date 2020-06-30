@@ -3,7 +3,10 @@ var app = new Vue({
 
   data: {
 
+    editar: false,
     errors: [],
+
+    Id_post: '',
     titulo: '',
     descripcion: '',
     imagen: [],
@@ -21,6 +24,17 @@ var app = new Vue({
   },
 
   methods: {
+
+    ConsultarPost: function(){
+      capturador = this;
+      axios.get('/blog/php/consultar.php', {
+
+      }).then(function (response) {
+        console.log(response.data);
+        capturador.posts = response.data;
+        capturador.filterPosts = response.data;
+      });
+    },
 
     Grabar: function(){
 
@@ -80,6 +94,17 @@ var app = new Vue({
       });
     },
 
+    EditarPost: function(id) {
+
+      this.Id_post = id;
+
+    },
+
+    ActivarEdicion: function(id){
+      this.editar = true;
+      this.EditarPost(id);
+    },
+
     checkForm: function (e){
 
       this.errors = [];
@@ -98,17 +123,6 @@ var app = new Vue({
 
       e.preventDefault();
 
-    },
-
-    ConsultarPost: function(){
-      capturador = this;
-      axios.get('/blog/php/consultar.php', {
-
-      }).then(function (response) {
-        console.log(response.data);
-        capturador.posts = response.data;
-        capturador.filterPosts = response.data;
-      });
     },
 
   }//end methods

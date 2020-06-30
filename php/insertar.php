@@ -42,6 +42,7 @@ VALUES ('$titulo', '$descripcion', '$archivo')";
 echo $consulta;
 if($mysqli->query($consulta)){
   echo json_encode(true);
+   header("Location: http://localhost/blog/intranet.php");
 }else{
   echo json_encode(false);
 }
