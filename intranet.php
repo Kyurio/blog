@@ -17,9 +17,11 @@
 
   <div id="app">
     <div class="container">
-      <div class="mt-3 mb-3 py-3">
+      <div class="mt-3 mb-3 py-3 ">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 mx-3">
+            <?php session_start(); ?>
+            <h3>Bienvenido: <?php echo $_SESSION['user'] ?></h3>
 
 
 
@@ -28,12 +30,11 @@
               <h4>insertar post</h4>
               <div class="form-group">
                 <label for="titulo">Titulo</label>
-                <input type="text" name="" value="<?php echo $id; ?>">
-                <input name="titulo" type="text" id="titulo" class="form-control" value="<?php echo $titulo; ?>" aria-describedby="titulo">
+                <input name="titulo" type="text" id="titulo" class="form-control" value="" aria-describedby="titulo">
               </div>
               <div class="form-group">
                 <label for="descripcion">Descripcion</label>
-                <textarea name="descripcion" class="form-control" value="<?php echo $descripcion; ?>" name="name" rows="8" cols="80"></textarea>
+                <textarea name="descripcion" class="form-control" value="" name="name" rows="8" cols="80"></textarea>
               </div>
               <div class="form-group">
                 <label for="imagen">imagen</label>
