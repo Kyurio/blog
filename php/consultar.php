@@ -7,6 +7,8 @@ $statement->execute();
 if (!$statement){
     echo json_encode('Error al ejecutar la consulta');
 }else{
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-	echo json_encode($results);
+    $results = $statement->fetchAll();
+	//echo json_encode($results);
 }
+
+$resultado = $results;

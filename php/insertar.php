@@ -4,6 +4,7 @@ include('conexion.php');
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $archivo = $_FILES['archivo']['name'];
+$id = $_POST['Id'];
 
 echo $archivo;
 //Si el archivo contiene algo y es diferente de vacio
@@ -22,7 +23,7 @@ if (isset($archivo) && $archivo != "") {
     //Se intenta subir al servidor
     if (move_uploaded_file($temp, 'imgs'.$archivo)) {
       //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-    /*  chmod('imgs /'.$archivo, 755);
+      /*  chmod('imgs /'.$archivo, 755);
       //Mostramos el mensaje de que se ha subido co éxito
       echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
       //Mostramos la imagen subida
@@ -36,13 +37,26 @@ if (isset($archivo) && $archivo != "") {
   }
 }
 /* Execute a prepared statement by passing an array of values */
+if (empty($id)) {
 
-$consulta = "INSERT INTO post (titulo, descripcion, imagen)
-VALUES ('$titulo', '$descripcion', '$archivo')";
-echo $consulta;
-if($mysqli->query($consulta)){
-  echo json_encode(true);
-   header("Location: http://localhost/blog/intranet.php");
-}else{
-  echo json_encode(false);
+  $consulta = "INSERT INTO post (titulo, descripcion, imagen)
+  VALUES ('$titulo', '$descripcion', '$archivo')";
+  echo $consulta;
+  if($mysqli->query($consulta)){
+    header("Location: http://localhost/blog/intranet.php");
+  }else{
+    echo json_encode(false);
+  }
+
+}else {
+
+  $consulta = "UPDATE post SET titulo = '$titulo', descripcion = '$descripcion', imagen = '$archivo' WHERE Id = $id";
+  echo $consulta;
+  if($mysqli->query($consulta)){
+    header("Location: http://localhost/blog/intranet.php");
+  }else{
+    echo json_encode(false);
+  }
+
+
 }

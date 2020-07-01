@@ -8,11 +8,11 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-  <title>Hello, world!</title>
+  <title>Blog</title>
 </head>
 <body>
-  <div id="app-2">
-    
+
+  <?php require('php/consultar.php') ?>
 
 
     <div class="container">
@@ -29,13 +29,13 @@
         <!-- end buscador -->
         <!-- contenedor -->
 
+        <?php foreach ($results as $item): ?>
+              <img class="name card-img-top" src="<?php echo "php/imgs".$item['imagen'] ?>" alt="Card image cap">
+            <h3 class=""><?php echo $item['titulo']; ?></h3>
+            <br>
+            <p class=""><?php echo $item['descripcion']; ?> </p>
+        <?php endforeach; ?>
 
-        <div v-for="item in filterPosts">
-          <img class="name card-img-top" src="/item.imagen" alt="Card image cap">
-          <h3 class="">{{ item.titulo }}</h3>
-          <br>
-          <p class="">{{ item.descripcion }} </p>
-        </div>
 
 
         <!-- end container -->
