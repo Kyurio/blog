@@ -13,16 +13,31 @@
 
   <title>Blog</title>
 </head>
+
 <style media="screen">
+
 .card-img-top{
   height: 450px;
   width: 100%;
 }
+
 .pagination li {
   display:inline-block;
   padding:5px;
 }
+
+a{
+  color: #000;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #000;
+}
+
+
 </style>
+
 <body>
 
   <?php require('php/consultar.php') ?>
@@ -47,14 +62,18 @@
       <ul class="list">
         <?php foreach ($results as $item): ?>
           <div class="mt-5 mb-5 py-5 mx-5">
-            <img class="name img-fluid card-img-top" src="<?php echo "php/imgs".$item['imagen'] ?>" alt="Card image cap">
-            <h3 class="name"><?php echo $item['titulo']; ?></h3>
-            <br>
-            <p class="name"><?php echo $item['descripcion']; ?> </p>
+            <a href="detalle.php?id=<?php echo $item['Id']; ?>">
+              <img class="name img-fluid card-img-top" src="<?php echo "php/imgs".$item['imagen'] ?>" alt="Card image cap">
+              <h3 class="name"><?php echo $item['titulo']; ?></h3>
+              <br>
+              <p class="name"><?php echo $item['descripcion']; ?> </p>
+            </a>
           </div>
         <?php endforeach; ?>
       </ul>
-      <ul class="pagination"></ul>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination"></ul>
+      </nav>
     </div>
 
     <script type="text/javascript">
