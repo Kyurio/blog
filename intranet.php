@@ -9,22 +9,46 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <title>Hello, world!</title>
+
+  <style media="screen">
+  .card-img-top{
+    height: 450px;
+    width: 100%;
+  }
+  .pagination li {
+    display:inline-block;
+    padding:5px;
+  }
+  </style>
+
 </head>
 <body>
 
   <?php require('php/consultar.php') ?>
 
 
+
   <div id="app">
     <div class="container">
+
+      <div class="mt-3">
+        <?php session_start(); ?>
+        <h3>Bienvenido: <?php echo $_SESSION['user'] ?></h3>
+        <?php
+
+        if (empty($_SESSION)) {
+          echo "no hay session iniciada";
+          header("location: /blog/login.php");
+        }
+
+        ?>
+      </div>
+
+
+
       <div class="mt-3 mb-3 py-3 ">
         <div class="row">
           <div class="col-md-4 mx-3">
-            <?php session_start(); ?>
-            <h3>Bienvenido: <?php echo $_SESSION['user'] ?></h3>
-
-
-
             <!-- forms -->
             <form action="php/insertar.php" method="post" novalidate="true" enctype="multipart/form-data">
               <h4>insertar post</h4>
